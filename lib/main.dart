@@ -1,16 +1,13 @@
 import 'dart:io';
-
 // El Aprendiz 2 definirá los atributos de esta clase
-class Contacto{
+class Contacto {
   String nombre;
   String telefono;
   Contacto(this.nombre, this.telefono);
 }
-
 void main() {
   List<Contacto> agenda = [];
   bool ejecutando = true;
-
   while (ejecutando) {
     print('\n--- Agenda de Contactos ---');
     print('1. Agregar Contacto');
@@ -19,15 +16,20 @@ void main() {
     print('4. Eliminar Contacto');
     print('5. Salir');
     stdout.write('Elige una opción: ');
-
     String? opcion = stdin.readLineSync();
-
     switch (opcion) {
       case '1':
         // TODO: Aprendiz 1 - Implementar lógica para agregar
         break;
       case '2':
-        // TODO: Aprendiz 2 - Implementar lógica para listar
+        print('\n--- Lista de Contactos ---');
+        if (agenda.isEmpty) {
+          print('La agenda está vacía.');
+        } else {
+          for (int i = 0; i < agenda.length; i++) {
+            print('${i + 1}. Nombre: ${agenda[i].nombre} | Teléfono: ${agenda[i].telefono}');
+          }
+        }
         break;
       case '3':
         // TODO: Aprendiz 3 - Implementar lógica para buscar
