@@ -46,11 +46,47 @@ void main() {
         break;
 
       case '3':
-        // TODO: Aprendiz 3 - Implementar lógica para buscar
+        print('\n--- Buscar Contacto ---');
+        stdout.write('Ingrese el nombre a buscar: ');
+        String? criterio = stdin.readLineSync();
+
+        if (criterio != null && criterio.trim().isNotEmpty) {
+          var encontrados = agenda.where(
+            (c) => c.nombre.toLowerCase().contains(criterio.toLowerCase().trim())
+          ).toList();
+
+          if (encontrados.isEmpty) {
+            print('No se encontró ningún contacto con ese nombre.');
+          } else {
+            print('Contactos encontrados:');
+            for (var c in encontrados) {
+              print('- Nombre: ${c.nombre} | Teléfono: ${c.telefono}');
+            }
+          }
+        } else {
+          print('Error: Debe ingresar un texto para buscar.');
+        }
         break;
 
       case '4':
-        // TODO: Aprendiz 3 - Implementar lógica para eliminar
+        print('\n--- Eliminar Contacto ---');
+        stdout.write('Ingrese el nombre del contacto a eliminar: ');
+        String? nombreEliminar = stdin.readLineSync();
+
+        if (nombreEliminar != null && nombreEliminar.trim().isNotEmpty) {
+          int cantidadInicial = agenda.length;
+          agenda.removeWhere(
+            (c) => c.nombre.toLowerCase() == nombreEliminar.toLowerCase().trim()
+          );
+
+          if (agenda.length < cantidadInicial) {
+            print('Contacto "$nombreEliminar" eliminado exitosamente.');
+          } else {
+            print('No se encontró ningún contacto con ese nombre para eliminar.');
+          }
+        } else {
+          print('Error: Debe ingresar un nombre válido.');
+        }
         break;
 
       case '5':
